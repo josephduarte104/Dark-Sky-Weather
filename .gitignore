@@ -1,2 +1,4 @@
+*README_template.md
 *local_settings.py
+*.pyc
 __pycache__
