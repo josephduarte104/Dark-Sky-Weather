@@ -1,4 +1,5 @@
 # Dark Sky Weather
+![](https://github.com/kdubss/Dark-Sky-Weather/blob/master/static/img/landing-page.png)
 ---
 Web-app that fetches hourly and daily *forecast* (and *hindcast*) weather data from
 the [Dark Sky API](forecast.io).
