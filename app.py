@@ -6,7 +6,7 @@ import darksky_api_methods as dsky
 
 from flask import Flask, jsonify, render_template, url_for, redirect
 from flask_mako import MakoTemplates
-from flask_bootstrap4 import Bootstrap
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -19,7 +19,11 @@ def get_mako_template():
 @app.route('/', methods = ['GET'])
 @app.route('/index', methods = ['GET'])
 def redirect_to_root():
-    return redirect('/darkskyweather/api/v1.0/forecast/', code = 302)
+    return redirect('/darkskyweather/api/v1.0/', code = 302)
+
+@app.route('/darkskyweather/api/v1.0/', methods = ['GET'])
+def get_landing_page():
+    return render_template('index.html')
 
 @app.route('/alerts', methods = ['GET'])
 def redirect_to_alerts():
