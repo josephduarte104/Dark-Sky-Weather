@@ -66,4 +66,4 @@ This project is licensed under the MIT license - See the [License.md](https://gi
 
 ## Acknowledgements
 ---
-WIP
+  - Bootstrap styling and *some* images downloaded from [Start Bootstrap](https://startbootstrap.com/template-overviews/grayscale/)

@@ -1,4 +1,8 @@
 *README_template.md
 *local_settings.py
 *.pyc
+*.zip
+
+/startbootstrap-grayscale-gh-pages/*
+
 __pycache__
