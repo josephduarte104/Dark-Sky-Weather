@@ -6,8 +6,10 @@ import darksky_api_methods as dsky
 
 from flask import Flask, jsonify, render_template, url_for, redirect
 from flask_mako import MakoTemplates
+from flask_bootstrap4 import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 mako = MakoTemplates(app)
 
 @app.route('/test_mako', methods = ['GET'])
