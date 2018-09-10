@@ -7,24 +7,47 @@ import darksky_api_methods as dsky
 from flask import Flask, jsonify, render_template, url_for, redirect
 from flask_mako import MakoTemplates
 from flask_bootstrap import Bootstrap
+from flask_nav import Nav
+from flask_nav.elements import Navbar, View
 
 app = Flask(__name__)
-Bootstrap(app)
-mako = MakoTemplates(app)
+nav = Nav(app)
 
-@app.route('/test_mako', methods = ['GET'])
-def get_mako_template():
-    return render_template('mako_template_test.html')
+# kwkw - Build navbar
+topbar = Navbar('', 
+                View('Home', 'index'), 
+                View('About', 'about_page'),
+                View('Contact', 'contact_page')
+                )
 
+nav.register_element('top', topbar)
+nav.init_app(app)
+
+# > Redirected endpoints
 @app.route('/', methods = ['GET'])
 @app.route('/index', methods = ['GET'])
 def redirect_to_root():
     return redirect('/darkskyweather/api/v1.0/', code = 302)
 
-@app.route('/darkskyweather/api/v1.0/', methods = ['GET'])
-def get_landing_page():
-    return render_template('index.html')
+@app.route('/about', methods = ['GET'])
+def redirect_to_about():
+    return redirect('/darkskyweather/api/v1.0/about', code = 302)
 
+# 1. Landing Page/Index Page:
+@app.route('/darkskyweather/api/v1.0/', methods = ['GET'])
+def index():
+    return render_template('index.html')
+    
+# 2. About Page
+@app.route('/darkskyweather/api/v1.0/about', methods = ['GET'])
+def about_page():
+    return render_template('about.html', title = 'About')
+
+
+
+
+
+# > Weather Data:
 @app.route('/alerts', methods = ['GET'])
 def redirect_to_alerts():
     return redirect('/darkskyweather/api/v1.0/forecast/alerts/')
