@@ -7,21 +7,8 @@ import darksky_api_methods as dsky
 from flask import Flask, jsonify, render_template, url_for, redirect
 from flask_mako import MakoTemplates
 from flask_bootstrap import Bootstrap
-from flask_nav import Nav
-from flask_nav.elements import Navbar, View
 
 app = Flask(__name__)
-nav = Nav(app)
-
-# kwkw - Build navbar
-topbar = Navbar('', 
-                View('Home', 'index'), 
-                View('About', 'about_page'),
-                View('Contact', 'contact_page')
-                )
-
-nav.register_element('top', topbar)
-nav.init_app(app)
 
 # > Redirected endpoints
 @app.route('/', methods = ['GET'])
@@ -40,8 +27,13 @@ def index():
     
 # 2. About Page
 @app.route('/darkskyweather/api/v1.0/about', methods = ['GET'])
-def about_page():
+def about():
     return render_template('about.html', title = 'About')
+
+# 3. Contact Page
+@app.route('/darkskyweather/api/v1.0/contact', methods = ['GET'])
+def contact():
+    return render_template('contact.html', title = 'Contact')
 
 
 
