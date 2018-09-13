@@ -10,16 +10,15 @@ import geocode as geo
 
 from flask import jsonify
 
-def getForecastResponseFromRequest():
+def getForecastResponseFromRequest(location):
     '''
     Method of sending a request to the Dark Sky API, then handling the response by calling on the .json() method to convert the response to a Python Dict object.
 
     Output:
         1.  data_dict  ::  Python dict object containing key-value pairs for hourly data fetched from api.darksky.net
     '''
-    data_dict = api.getForecastDataFromDarkSky('Vancouver Canada')
+    data_dict = api.getForecastDataFromDarkSky(location)
     data_dict = data_dict.json()
-
     return data_dict
 
 def getForecastWeatherAlerts(address):
@@ -64,7 +63,6 @@ Time:
     weather_alerts_content['severity'],
     api.getHumanReadableTimeFromUnixTimeStamp(weather_alerts_content['time'])
 )
-
     return weather_alert_out
 
 def getDailyForecastData(json_dict):
@@ -78,7 +76,6 @@ def getDailyForecastData(json_dict):
         2.  daily_data  ::  Python dict object containing the daily data parsed from the JSON response from api.darksky.net.
     '''
     daily_data = json_dict['daily']['data']
-
     # kwkw - Returns an array of data objects
     return daily_data
 
@@ -92,20 +89,20 @@ def getHourlyForecastData(json_dict):
         2.  hourly_data  ::  Python dict object containing the daily data parsed from the JSON response from api.darksky.net.
     '''
     hrly_data = json_dict['hourly']['data']
-
     # kwkw - Returns an array of data objects(?):
     return hrly_data
 
-def getCelsiusFromFahrenheit(temp_f):
-    '''
-    '''
-    pass
+def getCelsiusFromFahrenheit(tempF):
+    tempC = 5./9. * (tempF - 32)
+    return tempC
 
-def getFahrenheitFromCelsius(temp_c):
-    '''
-    '''
-    pass
+def getFahrenheitFromCelsius(tempC):
+    tempF = (tempC * 9./5.) + 32
+    return tempF
 
+def getCurrentWeatherParams(response_dict):
+    current = response_dict["currently"]
+    return current
 
 if __name__ == '__main__':
 

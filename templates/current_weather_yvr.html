@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="mx-auto text-center">
+      <h1>Current Weather</h1>
+      <hr>
+      
+      <table class="table table-light table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Data Type</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <th scope="row">Time</th>
+            <td>{{ time }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Apparent Temperature (&#8457;)</th>
+            <td>{{ current["apparentTemperature"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Temperature (&#8457;)</th>
+            <td>{{ current["temperature"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Cloud Cover</th>
+            <td>{{ current["cloudCover"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Probability Of Precipitation</th>
+            <td>{{ current["precipProbability"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Humidity</th>
+            <td>{{ current["humidity"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Wind Speed</th>
+            <td>{{ current["windSpeed"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Wind Gust</th>
+            <td>{{ current["windGust"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Wind Bearing</th>
+            <td>{{ current["windBearing"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Cloud Cover</th>
+            <td>{{ current["cloudCover"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">UV Index</th>
+            <td>{{ current["uvIndex"] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Visibility</th>
+            <td>{{ current["visibility"] }}</td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+  
+{% endblock %}

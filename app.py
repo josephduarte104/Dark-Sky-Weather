@@ -38,7 +38,11 @@ def weather_data_yvr():
     
 @app.route("/darkskyweather/api/v1.0/vancouver/current", methods = ["GET"])
 def current_weather_yvr():
-    return "Current Weather - Vancouver"
+    resp = dsky.getForecastResponseFromRequest("Vancouver Canada")
+    current = dsky.getCurrentWeatherParams(resp)
+    time = api.getHumanReadableTimeFromUnixTimeStamp(current["time"])
+    data = { "current": current }
+    return render_template("current_weather_yvr.html", current = current, time = time)
     
 @app.route("/darkskyweather/api/v1.0/vancouver/alerts", methods = ["GET"])
 def weather_alerts_yvr():
